@@ -2,8 +2,9 @@ import os
 import re
 import facebook
 import requests
+from bson.objectid import ObjectId
 from pymongo import MongoClient
-from flask import Flask, render_template, request, session, redirect, escape
+from flask import Flask, render_template, request, session, redirect, escape, make_response
 import jinja2
 
 app = Flask(__name__)
@@ -63,12 +64,15 @@ def love():
 	#dict stores value of person chatting with, and maps to [your number,their number]
 	print count_dict
 	id = chats.insert({"chats":count_dict})
-	return render_template('hearts.html', counter=counter, id=id)
+	resp = make_response(render_template('hearts.html', counter=counter, id=id))
+	resp.set_cookie('id_code', str(id))
+	return resp
 @app.route('/find', methods=['GET','POST'])
 def find():
 	if request.method == 'POST':
 		id_code = request.form.get('id')
-		return render_template('find.html', id_code=id_code)
+		chat = chats.find({_id:ObjectId(id_code)}).limit(1)[0]
+		return render_template('find.html', chat=chat)
 	return render_template('find.html')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
