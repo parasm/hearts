@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Hearts{% endblock %}
 {% block content %}
-	<h3>Your unqiue id is {{id}}</h3>
-	{% for x in counter %}
-	<p>{{x}}</p>
-	{% endfor %}
+	<div class="container">
+		<h2 style="text-align:center;">Raw Data</h2>
+		<div class="row">
+			{% for x in counter %}
+			<div class="col-lg-2">
+				<p style="display:inline;">{{x}}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}
