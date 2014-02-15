@@ -18,7 +18,7 @@ $('document').ready(function(){
             url : 'http://localhost:8000/find',
             data : {id:cookie},
             success : function(data){
-                alert(data);
+                console.log(data);
             }
         });
     }
