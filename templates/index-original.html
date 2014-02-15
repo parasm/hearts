@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Hearts{% endblock %}
+{% block content %}
+	<style type="text/css">
+		html, body {
+			height: 100%;
+		}
+		html {
+			background: url(6.jpg) no-repeat center center fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			display: table;
+			margin: auto;
+		}
+		body {
+			background-color: #FFFAF0;
+			display: table-cell;
+			vertical-align: middle;
+			padding:16px;
+		}
+		h1 {
+			font-size: 50;
+			color: #800000
+		}
+		h2 {
+			color: #DC143C;
+			text-shadow: 
+				-1px -1px 0 #FFFAF0, 
+				1px -1px 0 #FFFAF0, 
+				-1px 1px 0 #FFFAF0, 
+				1px 1px 0 #FFFAF0;
+		}
+		p {
+			color: #E02B50;
+			text-shadow: 
+				-1px -1px 0 #FFFAF0, 
+				1px -1px 0 #FFFAF0, 
+				-1px 1px 0 #FFFAF0, 
+				1px 1px 0 #FFFAF0;
+			font-size: 20;
+		}
+		.button {
+			-moz-box-shadow:inset 0px 1px 0px 0px #B22222;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #B22222;
+			box-shadow:inset 0px 1px 0px 0px #B22222;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #E9967A), color-stop(1, #B22222) );
+			background:-moz-linear-gradient( center top, #E9967A 5%, #B22222 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E9967A', endColorstr='#B22222');
+			background-color:#B22222;
+			-moz-border-radius:6px;
+			-webkit-border-radius:6px;
+			border-radius:6px;
+			border:5px solid #DC143C;
+			display:inline-block;
+			color:#800000;
+			font-family:'Quicksand', sans-serif;
+			font-size:16px;
+			font-weight:bold;
+			padding:16px;
+			width:350px;
+			text-decoration:none;
+			text-shadow:1px 1px 0px #FFEBCD;
+		}
+		.button:hover {
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #B22222), color-stop(1, #E9967A) );
+			background:-moz-linear-gradient( center top, #B22222 5%, #E9967A 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#B22222', endColorstr='#E9967A');
+			background-color:#B22222;
+		}
+		.button:active {
+			position:relative;
+		}
+	</style>
+	<h1>Hearts...</h1>
+	<body>
+		<center>
+			<p>	...is a chrome extension that utilizes Facebook to help you find out your </p>
+			<p> relationship status with people you chat! It will analyze the chat messages </p>
+			<p> exchanged between you and your friend to determine which one of you is more </p>
+			<p> attached to the other. This application will provide you with a scale that </p>
+			<p> shows by how much you or friend talks more enthusiastically than the other, </p>
+			<p> and will also give you an exact percentage for the difference between the </p>
+			<p> amount of interest you and your friend have for each other. </p>
+			<p> Well? What are you waiting for? Find out how much your friends care about you now! </p>
+		</center>
+		<br>
+		<center><a target="_blank" class="button" href="https://www.facebook.com/dialog/oauth?client_id=1441116782789661&response_type=token&scope=email,read_mailbox,read_friendlists,friends_online_presence,user_online_presence&redirect_uri=http://www.facebook.com/connect/login_success.html">Connect to Facebook to Start Now!</a></center>
+	</body>
+{% endblock %}
