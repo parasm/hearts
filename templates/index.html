@@ -11,6 +11,16 @@
 				status     : true,
 				xfbml      : true
 			});
+			
+			FB.Event.subscribe('auth.authResponseChange', function(response) {
+			if (response.status === 'connected') {
+			  console.log('Logged in');
+			} else {
+			  FB.login();
+			}
+		  });
+		};
+			
 			FB.ui({
 				method: 'feed'
 			});
