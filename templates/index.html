@@ -1,96 +1,10 @@
-	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-	<style type="text/css">
-		html, body {
-			height: 100%;
-		}
-		html {
-			
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-			display: table;
-			margin: auto;
-		}
-		body {
-			background: url(wallpaper.jpg) no-repeat center center fixed;
-			font-family: 'ProximaNova', Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-			font-weight: normal;
-			color: #ecf0f1;
-			background-size: cover;
-			background-position-y: -10px;
-		}
-
-		.container {
-			margin-left: auto;
-			margin-right: auto;
-			text-align: center;
-			margin-top: 85px;
-		}
-
-		.dat {
-			font-weight: bold;
-			color: #007FFF;
-		}
-
-		h4 {
-			font-weight: 250;
-			font-size: 22px !important;
-			padding-left: 15px !important;
-			padding-right: 15px !important;
-			padding-top: 15px !important;
-			padding-bottom: 15px !important;
-			color: #500607;
-			
-		    font-family: 'Open-Sans';
-			
-		}
-		.btn-default {
-			background-color: rgba(245, 0, 65, 0.54) !important;
-			color: white;
-			border-color: white;
-			font-weight: lighter;
-			font-size: 24px;
-			font-family: ProximaNova;
-			font-weight: 600;
-			margin-top: 40px;
-			transition: 0.3s;
-
-		}
-
-		.btn-default:hover{
-			background-color: rgba(245, 0, 65, 0.74) !important;
-			color: white;
-			border-color: white;
-			font-size: 24px;
-			font-family: ProximaNova;
-			font-weight: 600;
-			margin-top: 40px;
-			transition: 0.3s;
-		}
-		.jumbotron {
-			margin-top: 15px !important;
-			width: 550px !important;
-			margin: auto !important;
-			padding: 15px !important;
-			color: #2A2D30 !important;
-			background-color: rgba(255, 255, 255, 0.52) !important;
-			border-radius: 4px !important;
-			height: 300px;
-			text-align: center
-		}
-		.header {
-			font-weight: lighter;
-			font-size: 72px;
-			color: #500607;
-			
-		    font-family: 'Open-Sans';
-		}
-	</style>
+{% extends "base.html" %}
+{% block title %}Hearts{% endblock %}
+{% block content %}
 	<body>
 		<div class="container">
 		<br>
-		<h1 class="header">Hearts</h1>
+		<h1 class="header" style="text-align:center;">Hearts</h1>
 		<br>
 		<div class="jumbotron" style="color: #2c3e50;">
 			<h4>
@@ -103,3 +17,4 @@
 		<br><br>
 
 	</body>
+{% endblock %}
