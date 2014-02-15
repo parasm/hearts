@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function getCookie(cname) {
 	var name = cname + "=";
 	var ca = document.cookie.split(';');
@@ -10,6 +11,11 @@ function getCookie(cname) {
 }
 
 $(window).load(function(){
+=======
+document.body.style.backgroundColor="red";
+$('document').ready(function(){
+    console.log("start");
+>>>>>>> b24edc509e6194de7aab7bb3ac45e121f8e99660
     try{
 		console.log(document.cookie);
         /*document.cookie.get({ url: 'http://localhost:8000', name: 'id_code' },
@@ -35,6 +41,7 @@ $(window).load(function(){
             data : {id:cookie},
             success : function(data){
                 console.log(data);
+
             }
         });
     }
