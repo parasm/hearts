@@ -4,22 +4,66 @@
 	</head>
 	<style type="text/css">
 		html, body {
-    height: 100%;
-}
-
-html {
-    display: table;
-    margin: auto;
-}
-
-body {
-    display: table-cell;
-    vertical-align: middle;
-}
+			height: 100%;
+		}
+		html {
+			display: table;
+			margin: auto;
+		}
+		body {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		h1 {
+			color: #CD5C5C;
+		}
+		p {
+			font-size: 50;
+			color: #8B0000
+		}
+		h2 {
+			color: #FFC0CB;
+		}
+		.button {
+			-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+			box-shadow:inset 0px 1px 0px 0px #caefab;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
+			background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+			background-color:#77d42a;
+			-moz-border-radius:6px;
+			-webkit-border-radius:6px;
+			border-radius:6px;
+			border:5px solid #268a16;
+			display:inline-block;
+			color:#000000;
+			font-family:'Quicksand', sans-serif;
+			font-size:24px;
+			font-weight:bold;
+			padding:16px;
+			width:300px;
+			text-decoration:none;
+			text-shadow:1px 1px 0px #aade7c;
+		}
+		.button:hover {
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
+			background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+			background-color:#5cb811;
+		}
+		.button:active {
+			position:relative;
+		}
 	</style>
-	<body background="background.jpg">
-		<div class="mybigheader">How does the person you chat with feel about you?</div>
-		<div class="mybigheader"> Find out if you're more into the person you are chatting with than he/she is into you using our app </div>
-		<a id="chromeext" href="http://hearts3.herokuapp.com">Install Chrome Extension</a> 
+	<body bgcolor= "#000000"> 
+		<h1 align="center">How does the person you chat with feel about you?</h1>
+		<h1 align="center">Team4/5 presents...</h1>
+		<p align="center"> Hearts </p>
+		<h2 align="center"> Find out if you're more into the person you are </h2>
+		<h2 align="center"> chatting with than he/she is into you using our app! </h2>
+		<br>
+		<center><a href="http://hearts3.herokuapp.com" class="button">Install Chrome Extension</a></center>
 	</body>
+
 </html>
