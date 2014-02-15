@@ -6,6 +6,10 @@
 		{% for x in count %}
 		<h2>Name: {{names[x]}}</h2>
 		<h3>Ratio: {{ratios[x]}}</h3>
+		<h4>{{ratios2[x]}}% of the conversation is owned by you</h4>
+		<div class="progress">
+            <div class="progress-bar" style="width: {{ratios2[x]}}%;"></div>
+        </div>
 		{% endfor %}
 	</div>
 {% endblock %}

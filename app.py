@@ -85,6 +85,7 @@ def find():
 def stats():
 	names = []
 	ratios = []
+	ratios2 = []
 	count = []
 	num = 0
 	for n in count_dict:
@@ -93,10 +94,11 @@ def stats():
 		you = count_dict.get(n)[0]
 		them = count_dict.get(n)[1]
 		ratios.append((you-them)/(you+them))
+		ratios2.append((you/(you+them))*100)
 		num+=1
 	print ratios
 	print names
-	return render_template('stats.html', count=count, names=names, ratios=ratios)
+	return render_template('stats.html', count=count, names=names, ratios=ratios, ratios2=ratios2)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
