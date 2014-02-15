@@ -1,3 +1,4 @@
+document.body.style.backgroundColor="red";
 $('document').ready(function(){
     console.log("start");
     try{
@@ -24,6 +25,7 @@ $('document').ready(function(){
             data : {id:cookie},
             success : function(data){
                 console.log(data);
+
             }
         });
     }

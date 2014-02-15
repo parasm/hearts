@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Hearts{% endblock %}
+{% block content %}
+	<div class="container">
+		<h1>Your conversations:</h1>
+		{% for x in names %}
+		<h2>Name: {{x}}</h2>
+		{% endfor %}
+	</div>
+{% endblock %}

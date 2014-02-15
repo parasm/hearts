@@ -14,14 +14,14 @@ app.secret_key = 'paras_is_the_slim_reaper'
 client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
 db = client.get_default_database()
 chats = db.chats
+counter = []
+count_dict = {}
 
 @app.route('/')
 def hello():
 	return render_template('index.html')
 @app.route('/hearts')
 def love():	
-	counter = []
-	count_dict = {}
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
 	token = user.get('access_token')
 	graph = facebook.GraphAPI(token)
@@ -80,6 +80,18 @@ def find():
 		chat = json.dumps(chat.get('chats'))
 		return chat
 	return render_template('find.html')
+@app.route('/stats')
+def stats():
+	names = []
+	ratios = []
+	for n in count_dict:
+		names.append(n)
+		you = count_dict.get(n)[0]
+		them = count_dict.get(n)[1]
+		ratios.append(you/them)
+	print ratios
+	print names
+	return render_template('stats.html', names=names, ratios=ratios)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
