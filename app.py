@@ -2,11 +2,16 @@ import os
 import re
 import facebook
 import requests
+from pymongo import MongoClient
 from flask import Flask, render_template, request, session, redirect, escape
 import jinja2
 
 app = Flask(__name__)
 app.secret_key = 'paras_is_the_slim_reaper'
+
+client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
+db = client.get_default_database()
+chats = db.chats
 
 @app.route('/')
 def hello():
@@ -57,7 +62,8 @@ def love():
 			count_dict[name2[0]] = [name1[1],name2[1]]
 	#dict stores value of person chatting with, and maps to [your number,their number]
 	print count_dict
-	return render_template('hearts.html', counter=counter)
+	id = chats.insert({"chats":count_dict})
+	return render_template('hearts.html', counter=counter, id=id)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
