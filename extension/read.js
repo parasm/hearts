@@ -1,4 +1,6 @@
+console.log("javascript start");
 $('document').ready(function(){
+	console.log("doc ready");
     try{
         chrome.cookies.get({ url: 'http://localhost:8000', name: 'id_code' },
         function (cookie) {
@@ -19,6 +21,7 @@ $('document').ready(function(){
             data : {id:cookie},
             success : function(data){
                 console.log(data);
+				console.log("requested data");
             }
         });
     }
