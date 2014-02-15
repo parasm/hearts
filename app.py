@@ -13,6 +13,7 @@ def hello():
 	return render_template('index.html')
 @app.route('/hearts')
 def love():	
+	counter = []
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
 	token = user.get('access_token')
 	graph = facebook.GraphAPI(token)
@@ -37,8 +38,10 @@ def love():
 			elif name2[0] == name:
 				name2[1] +=1
 		print name1[0] + " count: " + str(name1[1])
+		counter.append(str(name1[0]) + " count: " + str(name1[1]))
 		print name2[0] + " count: " + str(name2[1])
-	return render_template('hearts.html')
+		counter.append(str(name2[0]) + " count: " + str(name2[1]))
+	return render_template('hearts.html', counter=counter)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)

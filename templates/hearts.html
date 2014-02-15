@@ -2,5 +2,7 @@
 {% block title %}Hearts{% endblock %}
 {% block content %}
 	<p>test hearts</p>
-	{{cookie}}
+	{% for x in counter %}
+	<p>{{x}}</p>
+	{% endfor %}
 {% endblock %}
