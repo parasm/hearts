@@ -3,5 +3,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   // chrome.tabs.executeScript({
   //   code: 'document.body.style.backgroundColor="red"'
   // });
-	chrome.tabs.executeScript(null, {file: "read.js"});
+	//chrome.tabs.executeScript(null, {file: "read.js"});
+	chrome.tabs.create({
+		'url': 'https://gimmehearts.herokuapp.com'
+	}, function(tab){
+
+	});
 });
