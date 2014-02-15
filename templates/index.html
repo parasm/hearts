@@ -1,12 +1,10 @@
-{% extends "base.html" %}
-{% block title %}Hearts{% endblock %}
-{% block content %}
+	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<style type="text/css">
 		html, body {
 			height: 100%;
 		}
 		html {
-			background: url(6.jpg) no-repeat center center fixed; 
+			
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -15,77 +13,93 @@
 			margin: auto;
 		}
 		body {
-			background-color: #FFFAF0;
-			display: table-cell;
-			vertical-align: middle;
-			padding:16px;
+			background: url(wallpaper.jpg) no-repeat center center fixed;
+			font-family: 'ProximaNova', Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+			font-weight: normal;
+			color: #ecf0f1;
+			background-size: cover;
+			background-position-y: -10px;
 		}
-		h1 {
-			font-size: 50;
-			color: #800000
+
+		.container {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			margin-top: 85px;
 		}
-		h2 {
-			color: #DC143C;
-			text-shadow: 
-				-1px -1px 0 #FFFAF0, 
-				1px -1px 0 #FFFAF0, 
-				-1px 1px 0 #FFFAF0, 
-				1px 1px 0 #FFFAF0;
+
+		.dat {
+			font-weight: bold;
+			color: #007FFF;
 		}
-		p {
-			color: #E02B50;
-			text-shadow: 
-				-1px -1px 0 #FFFAF0, 
-				1px -1px 0 #FFFAF0, 
-				-1px 1px 0 #FFFAF0, 
-				1px 1px 0 #FFFAF0;
-			font-size: 20;
+
+		h4 {
+			font-weight: 250;
+			font-size: 22px !important;
+			padding-left: 15px !important;
+			padding-right: 15px !important;
+			padding-top: 15px !important;
+			padding-bottom: 15px !important;
+			color: #500607;
+			
+		    font-family: 'Open-Sans';
+			
 		}
-		.button {
-			-moz-box-shadow:inset 0px 1px 0px 0px #B22222;
-			-webkit-box-shadow:inset 0px 1px 0px 0px #B22222;
-			box-shadow:inset 0px 1px 0px 0px #B22222;
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #E9967A), color-stop(1, #B22222) );
-			background:-moz-linear-gradient( center top, #E9967A 5%, #B22222 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E9967A', endColorstr='#B22222');
-			background-color:#B22222;
-			-moz-border-radius:6px;
-			-webkit-border-radius:6px;
-			border-radius:6px;
-			border:5px solid #DC143C;
-			display:inline-block;
-			color:#800000;
-			font-family:'Quicksand', sans-serif;
-			font-size:16px;
-			font-weight:bold;
-			padding:16px;
-			width:350px;
-			text-decoration:none;
-			text-shadow:1px 1px 0px #FFEBCD;
+		.btn-default {
+			background-color: rgba(245, 0, 65, 0.54) !important;
+			color: white;
+			border-color: white;
+			font-weight: lighter;
+			font-size: 24px;
+			font-family: ProximaNova;
+			font-weight: 600;
+			margin-top: 40px;
+			transition: 0.3s;
+
 		}
-		.button:hover {
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #B22222), color-stop(1, #E9967A) );
-			background:-moz-linear-gradient( center top, #B22222 5%, #E9967A 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#B22222', endColorstr='#E9967A');
-			background-color:#B22222;
+
+		.btn-default:hover{
+			background-color: rgba(245, 0, 65, 0.74) !important;
+			color: white;
+			border-color: white;
+			font-size: 24px;
+			font-family: ProximaNova;
+			font-weight: 600;
+			margin-top: 40px;
+			transition: 0.3s;
 		}
-		.button:active {
-			position:relative;
+		.jumbotron {
+			margin-top: 15px !important;
+			width: 550px !important;
+			margin: auto !important;
+			padding: 15px !important;
+			color: #2A2D30 !important;
+			background-color: rgba(255, 255, 255, 0.52) !important;
+			border-radius: 4px !important;
+			height: 300px;
+			text-align: center
+		}
+		.header {
+			font-weight: lighter;
+			font-size: 72px;
+			color: #500607;
+			
+		    font-family: 'Open-Sans';
 		}
 	</style>
-	<h1>Hearts...</h1>
 	<body>
-		<center>
-			<p>	...is a chrome extension that utilizes Facebook to help you find out your </p>
-			<p> relationship status with people you chat! It will analyze the chat messages </p>
-			<p> exchanged between you and your friend to determine which one of you is more </p>
-			<p> attached to the other. This application will provide you with a scale that </p>
-			<p> shows by how much you or friend talks more enthusiastically than the other, </p>
-			<p> and will also give you an exact percentage for the difference between the </p>
-			<p> amount of interest you and your friend have for each other. </p>
-			<p> Well? What are you waiting for? Find out how much your friends care about you now! </p>
-		</center>
+		<div class="container">
 		<br>
-		<center><a target="_blank" class="button" href="https://www.facebook.com/dialog/oauth?client_id=1441116782789661&response_type=token&scope=email,read_mailbox,read_friendlists,friends_online_presence,user_online_presence&redirect_uri=http://www.facebook.com/connect/login_success.html">Connect to Facebook to Start Now!</a></center>
+		<h1 class="header">Hearts</h1>
+		<br>
+		<div class="jumbotron" style="color: #2c3e50;">
+			<h4>
+				Love lies at your fingertips<br/><br style="lign-height:5px;" />
+				Find out the quality of your relationships
+				<br><br>
+				<a type="button" class="btn btn-default btn-lg" href="/static/whodat.crx">Connect with Facebook</a>
+			</h4>
+		</div>
+		<br><br>
+
 	</body>
-{% endblock %}
