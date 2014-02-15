@@ -76,15 +76,15 @@ def love():
 		for friend in friends:
 			if friend.get("name") == f:
 				url = "https://graph.facebook.com/"+str(friend.get('id')+'?fields=gender,relationship_status,username&access_token=' + token)
-				print str(friend.get('id'))
+				#print str(friend.get('id'))
 				r = requests.get(url)
 				r = r.text
-				print r
+				#print r
 				r = ast.literal_eval(r)
-				print r
+				#print r
 				genders_dict[f] = r.get("gender")
 				friend_url[f] = "http://facebook.com/"+str(r.get('username'))
-				print r.get('relationship_status')
+				#print r.get('relationship_status')
 				relationships_dict[f] = r.get('relationship_status')
 
 	#print messaged_friends_names
