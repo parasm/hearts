@@ -1,6 +1,7 @@
 import os
 import re
 import facebook
+import json
 import requests
 from bson.objectid import ObjectId
 from pymongo import MongoClient
@@ -76,7 +77,9 @@ def find():
 		except Exception, e:
 			print e
 			return render_template('find.html', chat="could not find id")
-		return render_template('find.html', chat=chat)
+		chat = json.dumps(chat.get('chats'))
+		#return render_template('find.html', chat=chat)
+		return chat
 	return render_template('find.html')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))

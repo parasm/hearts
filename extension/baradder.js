@@ -1,6 +1,15 @@
 
+<<<<<<< HEAD
 var chats = $(document.getElementsByClassName("titlebarTextWrapper")); //change name
 var chat = chats[0];
+=======
+var chat = $(document.getElementById("Paras Modi")); //change name
+var top = parseInt(chat.style.top.split('px')[0]);
+var left = parseInt(chat.style.top.split('px')[0]);
+var newdiv = document.createElement("div");
+newdiv.id = "HeartsMonitor";
+newdiv.style.top = top;
+>>>>>>> 726f09e6ea25561a7215aa8da75ed48ef5c2282e
 
 var viewportOffset = chat.getBoundingClientRect();
 
