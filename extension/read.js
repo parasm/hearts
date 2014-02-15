@@ -1,21 +1,15 @@
 $('document').ready(function(){
-    if (localStorage.accessToken) {
-        var graphUrl = "https://graph.facebook.com/me?" + localStorage.accessToken + "&callback=displayUser";
-        console.log(graphUrl);
-
-        var script = document.createElement("script");
-        script.src = graphUrl;
-        document.body.appendChild(script);
-
-        function displayUser(user) {
-            console.log(user);
-        }
-    }
-    $.ajax({
-        type : 'GET',
-        url: "http://graph.facebook.com/me/photos",
-        success: function(data){
-            alert(data);
-        }
+    $('#form').submit(function (event) {
+        event.preventDefault();
+        var id_code = $('#id_code').val();
+        alert(id_code);
+        $.ajax({
+            type : 'POST',
+            url : 'http://hearts3.herokuapp.com/find',
+            data : {id: id_code},
+            success : function(data){
+                alert(data);
+            }
+        });
     });
 });

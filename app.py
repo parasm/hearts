@@ -64,6 +64,12 @@ def love():
 	print count_dict
 	id = chats.insert({"chats":count_dict})
 	return render_template('hearts.html', counter=counter, id=id)
+@app.route('/find', methods=['GET','POST'])
+def find():
+	if request.method == 'POST':
+		id_code = request.form.get('id_code')
+		return render_template('find.html', id_code=id_code)
+	return render_template('find.html')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
