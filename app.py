@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 import re
 import facebook
@@ -84,14 +85,18 @@ def find():
 def stats():
 	names = []
 	ratios = []
+	count = []
+	num = 0
 	for n in count_dict:
 		names.append(n)
+		count.append(num)
 		you = count_dict.get(n)[0]
 		them = count_dict.get(n)[1]
-		ratios.append(you/them)
+		ratios.append((you-them)/(you+them))
+		num+=1
 	print ratios
 	print names
-	return render_template('stats.html', names=names, ratios=ratios)
+	return render_template('stats.html', count=count, names=names, ratios=ratios)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
