@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "FB messages",
-  "description": "Just reads facebook messages",
+  "name": "Hearts",
+  "description": "The power of love lies at your hands",
   "version": "1.0",
   "permissions": [ "cookies", "*://*/*"],
   "content_scripts": [
