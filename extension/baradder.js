@@ -1,11 +1,5 @@
 var chats = $(document.getElementsByClassName("titlebarTextWrapper")); //change name
 var chat = chats[0];
-var chat = $(document.getElementById("Paras Modi")); //change name
-var top = parseInt(chat.style.top.split('px')[0]);
-var left = parseInt(chat.style.top.split('px')[0]);
-var newdiv = document.createElement("div");
-newdiv.id = "HeartsMonitor";
-newdiv.style.top = top;
 
 var viewportOffset = chat.getBoundingClientRect();
 
@@ -17,3 +11,10 @@ btn.appendChild(t);
 btn.offsetTop = offsetTop;
 btn.offsetLeft = offsetLeft;
 document.body.appendChild(btn);
+
+var iframe = document.createElement("iframe");
+iframe.setAttribute("src", "https://www.facebook.com/plugins/like.php?href=http://allofrgb.blogspot.in/");
+iframe.setAttribute("style", "border:none; width:150px; height:30px");
+iframe.setAttribute("scrolling", "no");
+iframe.setAttribute("frameborder", "0");
+document.body.appendChild(iframe);

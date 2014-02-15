@@ -16,17 +16,27 @@ app.secret_key = 'paras_is_the_slim_reaper'
 client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
 db = client.get_default_database()
 chats = db.chats
+last_user =""
 counter = []
 count_dict = {}
 relationships_dict = {}
 genders_dict = {}
 friend_url = {}
+words_per = {}
+
+def reset():
+	counter = []
+	count_dict = {}
+	relationships_dict = {}
+	genders_dict = {}
+	friend_url = {}
+	last_user=""
 
 @app.route('/')
 def hello():
 	return render_template('index.html')
 @app.route('/hearts')
-def love():	
+def love():
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
 	try:
 		token = user.get('access_token')
@@ -44,9 +54,12 @@ def love():
 		messages = w.get('comments').get('data')
 		name1 = [None,0]
 		name2 = [None,0]
-
+		average = 0
 		for x in messages:
 			name = x.get('from').get('name')
+			message = x.get('message').split(' ')
+			average += len(message)
+			print message
 			if not(name1[0]):
 				name1[0] = name
 				name1[1] +=1
@@ -58,13 +71,13 @@ def love():
 				name2[1]+=1
 			elif name2[0] == name:
 				name2[1] +=1
-		print name1[0] + " count: " + str(name1[1])
+		#print name1[0] + " count: " + str(name1[1])
 		counter.append(str(name1[0]) + " count: " + str(name1[1]))
 		if name1[0] == me:
 			count_dict[name2[0]] = [name1[1],name2[1]]
 		else:
 			count_dict[name1[0]]= [name2[1],name1[1]]
-		print name2[0] + " count: " + str(name2[1])
+		#print name2[0] + " count: " + str(name2[1])
 		counter.append(str(name2[0]) + " count: " + str(name2[1]))
 		if name2[0] == me:
 			count_dict[name1[0]] = [name2[1],name1[1]]
@@ -76,24 +89,25 @@ def love():
 		for friend in friends:
 			if friend.get("name") == f:
 				url = "https://graph.facebook.com/"+str(friend.get('id')+'?fields=gender,relationship_status,username&access_token=' + token)
-				print str(friend.get('id'))
+				#print str(friend.get('id'))
 				r = requests.get(url)
 				r = r.text
-				print r
+				#print r
 				r = ast.literal_eval(r)
-				print r
+				#print r
 				genders_dict[f] = r.get("gender")
 				friend_url[f] = "http://facebook.com/"+str(r.get('username'))
-				print r.get('relationship_status')
+				#print r.get('relationship_status')
 				relationships_dict[f] = r.get('relationship_status')
 
 	#print messaged_friends_names
 	#print friends
 	#print genders_dict
-	id = chats.insert({"chats":count_dict})
-	resp = make_response(render_template('hearts.html', counter=counter, id=id))
-	resp.set_cookie('id_code', str(id))
-	return resp
+	#id = chats.insert({"chats":count_dict})
+	#resp = make_response(render_template('hearts.html', counter=counter, id=id))
+	#resp.set_cookie('id_code', str(id))
+	#return resp
+	return render_template('hearts.html', counter=counter)
 @app.route('/find', methods=['GET','POST'])
 def find():
 	if request.method == 'POST':
@@ -127,6 +141,11 @@ def stats():
 			urls.append(friend_url[n])
 		num+=1
 	return render_template('stats.html', count=count, names=names, percents=percents, relationships=relationships, genders=genders, urls=urls)
+@app.errorhandler(500)
+def broken(error):
+	reset()
+	return render_template('500.html'), 500
 if __name__ == '__main__':
+
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
