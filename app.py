@@ -15,16 +15,15 @@ def hello():
 @app.route('/hearts')
 def love():
 	#token = request.cookies.get('fbsr_1441116782789661')
-	print request.cookies
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
-	print user
+	token = user.get('access_token')
 	#url = "https://graph.facebook.com/debug_token?input_token="+token+"&access_token={1441116782789661}"
 	#r = requests.get(url)
 	#print r.text
-	#graph = facebook.GraphAPI(token)
-	#profile = graph.get_object("me")
-	#friends = graph.get_connections("me", "friends")
-	#print friends
+	graph = facebook.GraphAPI(token)
+	profile = graph.get_object("me")
+	friends = graph.get_connections("me", "friends")
+	print friends
 	return render_template('hearts.html')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
