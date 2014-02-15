@@ -17,13 +17,12 @@ def love():
 	#token = request.cookies.get('fbsr_1441116782789661')
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
 	token = user.get('access_token')
-	#url = "https://graph.facebook.com/debug_token?input_token="+token+"&access_token={1441116782789661}"
-	#r = requests.get(url)
-	#print r.text
 	graph = facebook.GraphAPI(token)
 	profile = graph.get_object("me")
-	friends = graph.get_connections("me", "friends")
-	print friends
+	#friends = graph.get_connections("me", "friends")
+	#print friends
+	inbox = graph.get_connections("me","inbox")
+	print inbox
 	return render_template('hearts.html')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
