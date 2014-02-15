@@ -58,13 +58,13 @@ def love():
 				name2[1]+=1
 			elif name2[0] == name:
 				name2[1] +=1
-		print name1[0] + " count: " + str(name1[1])
+		#print name1[0] + " count: " + str(name1[1])
 		counter.append(str(name1[0]) + " count: " + str(name1[1]))
 		if name1[0] == me:
 			count_dict[name2[0]] = [name1[1],name2[1]]
 		else:
 			count_dict[name1[0]]= [name2[1],name1[1]]
-		print name2[0] + " count: " + str(name2[1])
+		#print name2[0] + " count: " + str(name2[1])
 		counter.append(str(name2[0]) + " count: " + str(name2[1]))
 		if name2[0] == me:
 			count_dict[name1[0]] = [name2[1],name1[1]]
@@ -127,6 +127,9 @@ def stats():
 			urls.append(friend_url[n])
 		num+=1
 	return render_template('stats.html', count=count, names=names, percents=percents, relationships=relationships, genders=genders, urls=urls)
+@app.errorhandler(500)
+def broken(error):
+	return render_template('500.html'), 500
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
