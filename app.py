@@ -17,6 +17,8 @@ db = client.get_default_database()
 chats = db.chats
 counter = []
 count_dict = {}
+relationships_dict = {}
+genders_dict = {}
 
 @app.route('/')
 def hello():
@@ -31,15 +33,21 @@ def love():
 	inbox = graph.get_connections("me","inbox")
 	data = inbox.get('data')
 	for w in data:
+		name = w.get("name")
+		try:
+			relationships_dict[name] = w.relationship_status
+			genders_dict[name] = w.gender
+		except AttributeError, e:
+			continue
 		try:
 			messages = w.get('comments').get('data')
 		except AttributeError, e:
-			break
+			continue
 		name1 = [None,0]
 		name2 = [None,0]
 
 		for x in messages:
-			name = x.get('from').get('name')
+			#name = x.get('from').get('name')
 			if not(name1[0]):
 				name1[0] = name
 				name1[1] +=1
@@ -86,6 +94,8 @@ def stats():
 	names = []
 	ratios = []
 	count = []
+	genders = []
+	relationships = []
 	num = 0
 	for n in count_dict:
 		names.append(n)
@@ -93,10 +103,12 @@ def stats():
 		you = count_dict.get(n)[0]
 		them = count_dict.get(n)[1]
 		ratios.append((you-them)/(you+them))
+		genders.append(genders_dict[n])
+		relationships.append(genders_dict[n])
 		num+=1
 	print ratios
 	print names
-	return render_template('stats.html', count=count, names=names, ratios=ratios)
+	return render_template('stats.html', count=count, names=names, ratios=ratios, relationships=relationships, genders=genders)
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
