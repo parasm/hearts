@@ -14,6 +14,7 @@ def hello():
 @app.route('/2')
 def test2():
 	return render_template('index2.html')
+@app.route('/')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
 	app.run(host='0.0.0.0', port=port,debug=True)
