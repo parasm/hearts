@@ -4,17 +4,20 @@
   "name": "FB messages",
   "description": "Just reads facebook messages",
   "version": "1.0",
-  "permissions": [ "cookies", "http://*/*", "https://*/*" ],
-  "content_scripts": [{
-    "matches": ["http://*/*","https://*/*"],
-    "js": ["jquery.js", "read.js"]
-  }],
+  "permissions": [ "cookies", "*://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["read.js", "jquery.js"]
+    }
+  ],
   "background": {
     "page":"background.html"
   },
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
-  }
+  },
+  "web_accessible_resources": ["read.js", "jquery.js"]
 
 }
