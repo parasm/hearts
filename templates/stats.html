@@ -4,8 +4,12 @@
 	<div class="container">
 		<h1>Your conversations:</h1>
 		{% for x in count %}
-		<h2>Name: {{names[x]}}</h2>
-		<h3>Ratio: {{ratios[x]}}</h3>
+		<h2>Name: <a href="{{urls[x]}}">{{names[x]}}</a> (Gender: {{genders[x]}}{% if relationships[x] %}, 
+		Relationship Status: {{relationships[x]}}{% endif %})</h2>
+		<h4>{{percents[x]}}% of the conversation is owned by you</h4>
+		<div class="progress">
+            <div class="progress-bar" style="width: {{percents[x]}}%;"></div>
+        </div>
 		{% endfor %}
 	</div>
 {% endblock %}
