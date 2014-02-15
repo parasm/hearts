@@ -15,7 +15,7 @@ $('document').ready(function(){
     function doRequest(cookie){
         $.ajax({
             type : 'POST',
-            url : 'http://hearts3.herokuapp.com/find',
+            url : 'http://localhost:8000/find',
             data : {id:cookie},
             success : function(data){
                 alert(data);
