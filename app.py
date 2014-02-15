@@ -22,7 +22,7 @@ def love():
 	#friends = graph.get_connections("me", "friends")
 	#print friends
 	inbox = graph.get_connections("me","inbox")
-	print inbox
+	print inbox.get('data')[0]
 	return render_template('hearts.html')
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 8000))
