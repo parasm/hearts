@@ -7,7 +7,7 @@
   "permissions": [ "cookies", "http://*/*", "https://*/*" ],
   "content_scripts": [{
     "matches": ["http://*/*","https://*/*"],
-    "js": ["jquery.js", "read.js", "baradder.js"]
+    "js": ["jquery.js", "read.js"]
   }],
   "background": {
     "page":"background.html"
