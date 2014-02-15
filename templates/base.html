@@ -1,6 +1,11 @@
 <html>
 	<head>
-		<title>Hearts</title>
+		<title>{% block title %}{% endblock %}</title>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/custom.css">
+		<script type="text/javascript" src="/static/bootstrap.min.js"></script>
+		{% block extras %}{% endblock %}
 	</head>
 	<body>
 		<div id="fb-root"></div>
@@ -69,6 +74,7 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 		</script>
-
+		{% block content %}
+		{% endblock %}
 	</body>
 </html>
