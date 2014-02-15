@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Hearts</title>
+	</head>
+	<body>
+	    <div id="fb-root"></div>
+		<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '1441116782789661',
+				status     : true,
+				xfbml      : true
+			});
+			alert('just got here');
+			FB.getLoginStatus(function(response) {
+	          if (response.status === 'connected') {
+	            // the user is logged in and has authenticated your
+	            // app, and response.authResponse supplies
+	            // the user's ID, a valid access token, a signed
+	            // request, and the time the access token 
+	            // and signed request each expire
+	            var uid = response.authResponse.userID;
+	            var accessToken = response.authResponse.accessToken;
+	            alert('paras');
+	          } else if (response.status === 'not_authorized') {
+	            // the user is logged in to Facebook, 
+	            // but has not authenticated your app
+	            FB.login(function(response) {
+	                if (response.authResponse) {
+	                    // The person logged into your app
+	                    alert('logged in');
+	                } else {
+	                    // The person cancelled the login dialog
+	                }
+	            });
+	          } else {
+	            // the user isn't logged in to Facebook.
+	            FB.login(function(response) {
+	                if (response.authResponse) {
+	                    // The person logged into your app
+	                } else {
+	                    // The person cancelled the login dialog
+	                }
+	            });
+	          }
+	    	});
+		};
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/all.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<div class="container">
+			<button style="text-align:center">Get Hearts Now</button>
+		</div>
+	</body>
+</html>
