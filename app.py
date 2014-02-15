@@ -67,7 +67,7 @@ def love():
 @app.route('/find', methods=['GET','POST'])
 def find():
 	if request.method == 'POST':
-		id_code = request.form.get('id_code')
+		id_code = request.form.get('id')
 		return render_template('find.html', id_code=id_code)
 	return render_template('find.html')
 if __name__ == '__main__':
