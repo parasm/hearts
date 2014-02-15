@@ -29,6 +29,7 @@ def love():
 			break
 		name1 = [None,0]
 		name2 = [None,0]
+
 		for x in messages:
 			name = x.get('from').get('name')
 			if not(name1[0]):
@@ -44,10 +45,17 @@ def love():
 				name2[1] +=1
 		print name1[0] + " count: " + str(name1[1])
 		counter.append(str(name1[0]) + " count: " + str(name1[1]))
-		count_dict[name1[0]] = name1[1]
+		if name1[0] == me:
+			count_dict[name2[0]] = [name1[1],name2[1]]
+		else:
+			count_dict[name1[0]]= [name2[1],name1[1]]
 		print name2[0] + " count: " + str(name2[1])
 		counter.append(str(name2[0]) + " count: " + str(name2[1]))
-		count_dict[name2[0]] = name2[1]
+		if name2[0] == me:
+			count_dict[name1[0]] = [name2[1],name1[1]]
+		else:
+			count_dict[name2[0]] = [name1[1],name2[1]]
+	#dict stores value of person chatting with, and maps to [your number,their number]
 	print count_dict
 	return render_template('hearts.html', counter=counter)
 if __name__ == '__main__':
