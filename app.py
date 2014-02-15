@@ -71,7 +71,11 @@ def love():
 def find():
 	if request.method == 'POST':
 		id_code = request.form.get('id')
-		chat = chats.find({_id:ObjectId(id_code)}).limit(1)[0]
+		try:
+			chat = chats.find({'_id':ObjectId(id_code)}).limit(1)[0]
+		except Exception, e:
+			print e
+			return render_template('find.html', chat="could not find id")
 		return render_template('find.html', chat=chat)
 	return render_template('find.html')
 if __name__ == '__main__':
