@@ -78,7 +78,6 @@ def find():
 			print e
 			return render_template('find.html', chat="could not find id")
 		chat = json.dumps(chat.get('chats'))
-		#return render_template('find.html', chat=chat)
 		return chat
 	return render_template('find.html')
 if __name__ == '__main__':
