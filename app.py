@@ -92,7 +92,7 @@ def stats():
 		count.append(num)
 		you = count_dict.get(n)[0]
 		them = count_dict.get(n)[1]
-		ratios.append(you/them)
+		ratios.append((you-them)/(you+them))
 		num+=1
 	print ratios
 	print names
