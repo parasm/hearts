@@ -15,18 +15,12 @@
 			margin: auto;
 		}
 		body {
+			background-color: #FFFAF0;
 			display: table-cell;
 			vertical-align: middle;
+			padding:16px;
 		}
 		h1 {
-			color: #E02B50;
-			text-shadow: 
-				-1px -1px 0 #FFFAF0, 
-				1px -1px 0 #FFFAF0, 
-				-1px 1px 0 #FFFAF0, 
-				1px 1px 0 #FFFAF0;
-		}
-		p {
 			font-size: 50;
 			color: #800000
 		}
@@ -38,8 +32,14 @@
 				-1px 1px 0 #FFFAF0, 
 				1px 1px 0 #FFFAF0;
 		}
-		p2 {
-			color: #F08080;
+		p {
+			color: #E02B50;
+			text-shadow: 
+				-1px -1px 0 #FFFAF0, 
+				1px -1px 0 #FFFAF0, 
+				-1px 1px 0 #FFFAF0, 
+				1px 1px 0 #FFFAF0;
+			font-size: 20;
 		}
 		.button {
 			-moz-box-shadow:inset 0px 1px 0px 0px #B22222;
@@ -56,10 +56,10 @@
 			display:inline-block;
 			color:#800000;
 			font-family:'Quicksand', sans-serif;
-			font-size:24px;
+			font-size:16px;
 			font-weight:bold;
 			padding:16px;
-			width:300px;
+			width:350px;
 			text-decoration:none;
 			text-shadow:1px 1px 0px #FFEBCD;
 		}
@@ -73,7 +73,19 @@
 			position:relative;
 		}
 	</style>
-	<p>Hearts...</p>
-	<center>..is a chrome extension </center>
-	<p><a target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=1441116782789661&response_type=token&scope=email,read_mailbox,read_friendlists,friends_online_presence,user_online_presence&redirect_uri=http://www.facebook.com/connect/login_success.html">Facebook Connect</a></p>
+	<h1>Hearts...</h1>
+	<body>
+		<center>
+			<p>	...is a chrome extension that utilizes Facebook to help you find out your </p>
+			<p> relationship status with people you chat! It will analyze the chat messages </p>
+			<p> exchanged between you and your friend to determine which one of you is more </p>
+			<p> attached to the other. This application will provide you with a scale that </p>
+			<p> shows by how much you or friend talks more enthusiastically than the other. </p>
+			<p> It will also give you an exact percentage for the difference between the </p>
+			<p> amount of interest you and your friend have for each other. </p>
+			<p> Well? What are you waiting for? Find out how much your friends care about you now! </p>
+		</center>
+		<br>
+		<center><a target="_blank" class="button" href="https://www.facebook.com/dialog/oauth?client_id=1441116782789661&response_type=token&scope=email,read_mailbox,read_friendlists,friends_online_presence,user_online_presence&redirect_uri=http://www.facebook.com/connect/login_success.html">Connect to Facebook to Start Now!</a></center>
+	</body>
 {% endblock %}

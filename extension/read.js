@@ -1,15 +1,25 @@
 $('document').ready(function(){
-    $('#form').submit(function (event) {
-        event.preventDefault();
-        var id_code = $('#id_code').val();
-        alert(id_code);
+    try{
+        chrome.cookies.get({ url: 'http://localhost:8000', name: 'id_code' },
+        function (cookie) {
+            if (cookie) {
+              doRequest(cookie.value);
+            }
+            else{
+                $('body').append("<h2>No id cookie found. Go to <a href='http://hearts3.herokuapp.com'>http://hearts3.herokuapp.com</a> to generate one</h2>");
+            }
+        });
+    }catch(err){
+        //do nothing
+    }
+    function doRequest(cookie){
         $.ajax({
             type : 'POST',
             url : 'http://hearts3.herokuapp.com/find',
-            data : {id: id_code},
+            data : {id:cookie},
             success : function(data){
                 alert(data);
             }
         });
-    });
+    }
 });
