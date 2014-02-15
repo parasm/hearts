@@ -1,7 +1,12 @@
-$('document').ready(function(){
+$(document).ready(function(){
     try{
 	
 		console.log("try");
+		if (window.jQuery) {  
+			console.log("jQuery is loaded");
+		} else {
+			console.log("jQuery is not loaded");
+		}
         chrome.cookies.get({ url: 'http://localhost:8000', name: 'id_code' },
         function (cookie) {
             if (cookie) {
