@@ -18,20 +18,22 @@ def love():
 	graph = facebook.GraphAPI(token)
 	profile = graph.get_object("me")
 	inbox = graph.get_connections("me","inbox")
+	messages = inbox.get('data')[0].get('comments').get('data')
 	name1 = [None,0]
 	name2 = [None,0]
-	messages = inbox.get('data')[0].get('comments').get('data')
 	for x in messages:
 		name = x.get('from').get('name')
 		if not(name1[0]):
 			name1[0] = name
-		else:
+			name1[1] +=1
+		elif name1[0] == name:
 			name1[1]+=1
-		if not(name2[0]) or name1[0] != name:
+
+		if not(name2[0]) and name1[0] != name:
 			name2[0] = name
-		else:
 			name2[1]+=1
-		print name
+		elif name2[0] == name:
+			name2[1] +=1
 	print name1[0] + " count: " + str(name1[1])
 	print name2[0] + " count: " + str(name2[1])
 	return render_template('hearts.html')
