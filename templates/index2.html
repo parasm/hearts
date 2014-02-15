@@ -5,7 +5,6 @@
 	<body>
 		<div id="fb-root"></div>
 		<script>
-<<<<<<< HEAD
 		  window.fbAsyncInit = function() {
 		  FB.init({
 		    appId      : '1441116782789661',
@@ -43,7 +42,6 @@
 		      FB.login();
 		    }
 		  });
-		  };
 
 		  // Load the SDK asynchronously
 		  (function(d){
@@ -62,50 +60,6 @@
 		      console.log('Good to see you, ' + response.name + '.');
 		    });
 		  }
-=======
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId      : '1441116782789661',
-				status     : true,
-				xfbml      : true
-			});
-			alert('just got here');
-			FB.getLoginStatus(function(response) {
-	          if (response.status === 'connected') {
-	            // the user is logged in and has authenticated your
-	            // app, and response.authResponse supplies
-	            // the user's ID, a valid access token, a signed
-	            // request, and the time the access token 
-	            // and signed request each expire
-	            var uid = response.authResponse.userID;
-	            var accessToken = response.authResponse.accessToken;
-	            alert('paras');
-	          } else if (response.status === 'not_authorized') {
-	            // the user is logged in to Facebook, 
-	            // but has not authenticated your app
-	            FB.login(function(response) {
-	                if (response.authResponse) {
-	                    // The person logged into your app
-	                    alert('logged in');
-	                } else {
-	                    // The person cancelled the login dialog
-	                }
-	            });
-	          } else {
-	            // the user isn't logged in to Facebook.
-	            FB.login(function(response) {
-	                if (response.authResponse) {
-	                    // The person logged into your app
-	                } else {
-	                    // The person cancelled the login dialog
-	                }
-	            });
-	          }
-	    	});
-			
-			FB.ui({
-				method: 'feed'
-			});
 		};
 		(function(d, s, id){
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -114,7 +68,6 @@
 			js.src = "https://connect.facebook.net/en_US/all.js";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
->>>>>>> 066034ce7d077489ce11bb95b2d33565b8c8d2f2
 		</script>
 
 	</body>
