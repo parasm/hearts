@@ -1,8 +1,6 @@
-
-<html>
-	<head>
-		<title>Hearts</title>
-	</head>
+{% extends "base.html" %}
+{% block title %}Hearts{% endblock %}
+{% block content %}
 	<style type="text/css">
 		html, body {
 			height: 100%;
@@ -75,14 +73,6 @@
 			position:relative;
 		}
 	</style>
-	<body> 
-		<h1 align="center">How does the person you chat with feel about you?</h1>
-		<h1 align="center">Team 4/5 presents...</h1>
-		<p align="center"> Hearts </p>
-		<h2 align="center"> Find out which one of your friends are more into </h2>
-		<h2 align="center"> you than you are into them using our app! </h2>
-		<br>
-		<center><a href="http://hearts3.herokuapp.com" class="button">Install Chrome Extension</a></center>
-	</body>
-
-</html>
+	<p>test</p>
+	<p><a target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=1441116782789661&response_type=token&scope=email,read_mailbox,read_friendlists,friends_online_presence,user_online_presence&redirect_uri=http://www.facebook.com/connect/login_success.html">Facebook Connect</a></p>
+{% endblock %}
