@@ -1,11 +1,15 @@
 <!doctype html>
 <html>
     <head>
-        <title>Auto Login</title>
+        <title>Hearts</title>
         <script src="jquery.js"></script>
         <script type="text/javascript" src="read.js"></script>
     </head>
-    <body>
-        <p><a target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=510076525769426&response_type=token&scope=email,read_mailbox,read_friendlists,friends_online_presence,user_online_presence&redirect_uri=http://www.facebook.com/connect/login_success.html">Facebook Connect</a></p>
+    <body style="width:300px; text-align:center;">
+    	<h1>Get your chat statistics and id code from <a href="http://hearts3.herokuapp.com">here</a></h1>
+    	<form method="POST" id="form">
+    		<input name="id_code" id="id_code">
+    		<button type="submit">Submit Code</button>
+    	</form>
     </body>
 </html>
