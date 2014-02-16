@@ -6,9 +6,11 @@
 		{% for x in count %}
 		<h2>Name: <a href="{{urls[x]}}">{{names[x]}}</a> <span class="smaller">(Gender: {{genders[x]}}{% if relationships[x] %}, 
 		Relationship Status: {{relationships[x]}}{% endif %})</span></h2>
-		<h4>You chat {{names[x]}} {{percents[x]}}%</h4>
-		<div class="progress">
-            <div class="progress-bar" style="width: {{percents[x]}}%;"></div>
+		<h4>You send {{avg_words[x][0]}} words per message</h4>
+		<h4>{{names[x]}} sends {{avg_words[x][1]}} words per message</h4>
+		<h4>You send {{percents[x]}}% of the chat messages</h4>
+		<div class="progress progress-striped">
+            <div class="progress-bar progress-bar-warning" style="width: {{percents[x]}}%;"></div>
         </div>
 		{% endfor %}
 	</div>
