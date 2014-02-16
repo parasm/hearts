@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Hearts",
-  "description": "The power of love lies at your hands",
+  "description": "Love lies at your fingertips",
   "version": "1.0",
   "permissions": [ "cookies","activeTab", "*://*/*"],
   "content_scripts": [
