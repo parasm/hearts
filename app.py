@@ -161,10 +161,18 @@ def find():
 	return render_template('find.html')
 @app.route('/stats', methods=['GET','POST'])
 def stats():
+<<<<<<< HEAD
 	#if request.method == 'POST':
 	#	to_email = request.form.get('email')
 	#	message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
 	#		"<h1>name</h1>")
+=======
+	if request.method == 'POST':
+		to_email = request.form.get('email')
+		print request.form
+		message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
+			"<h1>name</h1>")
+>>>>>>> 943ddf8547e114c56dfc595fd751fd99f35a0221
 	names = []
 	percents = []
 	count = []
