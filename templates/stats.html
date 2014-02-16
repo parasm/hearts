@@ -17,13 +17,37 @@
 		{% endfor %}
 		<br>
 		<div style="text-align:center;">
-			<h3 style="text-align:center;">Email my conversation statistics to me</h3>
-			<form action="/stats" method="POST">
+			<h3 style="text-align:center;">Email basic HTML of my conversation statistics to me</h3>
+			<form id="form">
 				<label>Enter an email: 
-					<input name="email">
+					<input name="email" id="email">
 				</label>
 				<button type="submit" class="btn btn-warning">Send</button>
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$('#form').submit(function (event) {
+			event.preventDefault();
+			var email = $('#email').val();
+			$.ajax({
+				type: 'POST',
+				url: "https://api.sendgrid.com/api/mail.send.json",
+				data: {
+					api_user: "parasm",
+					api_key: "bcabooks",
+					to: email,
+					toname: "Dearly Beloved",
+					subject: "Conversation Stats",
+					html: '{{str_format}}',
+					from: "stats@gimmehearts.com"
+				},
+				success: function(data){
+					console.log(data)
+					var x = "{{str_format}}"
+					console.log(x)
+				}
+			});
+		});
+	</script>
 {% endblock %}

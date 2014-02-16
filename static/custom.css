@@ -44,3 +44,14 @@ a{
 .box-error{
 	border: solid 2px red;
 }
+.f {
+	text-align: center;	
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    overflow:hidden;
+    font-size: 13px;
+}
+}
