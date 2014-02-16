@@ -39,13 +39,17 @@ def hello():
 	return render_template('index.html')
 @app.route('/hearts')
 def love():
+	debugger.info("WHAT IS LOVE")
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
+	debugger.info("loaded user")
 	try:
 		token = user.get('access_token')
 	except AttributeError, e:
 		return redirect('/')
+	debugger.info("got access token")
 	graph = facebook.GraphAPI(token)
 	profile = graph.get_object("me")
+	debugger.info("got me")
 	me = profile.get('first_name') +" "+ profile.get('last_name')
 	inbox = graph.get_connections("me","inbox")
 	data = inbox.get('data')
