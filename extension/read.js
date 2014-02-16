@@ -1,4 +1,3 @@
-document.body.style.backgroundColor="red";
 $('document').ready(function(){
     console.log("start");
     try{
