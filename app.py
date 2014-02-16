@@ -27,7 +27,6 @@ friend_url = {}
 words_per = {}
 
 def reset():
-	print "got here reset 1"
 	global counter
 	counter = []
 	global count_dict
