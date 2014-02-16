@@ -48,8 +48,9 @@ def love():
 		return redirect('/')
 	print "got access token"
 	graph = facebook.GraphAPI(token)
+	print "created graph object"
 	profile = graph.get_object("me")
-	debugger.info("got me")
+	print "got me"
 	me = profile.get('first_name') +" "+ profile.get('last_name')
 	inbox = graph.get_connections("me","inbox")
 	data = inbox.get('data')
