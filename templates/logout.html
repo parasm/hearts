@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Hearts{% endblock %}
+{% block logout %}
+FB.logout(function(response) {
+  console.log("now logged out");
+});
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<h1 style="text-align:center;">Successfully Logged Out!</h1>
+	</div>
+{% endblock %}
