@@ -156,51 +156,6 @@ def find():
 	return render_template('find.html')
 @app.route('/stats', methods=['GET','POST'])
 def stats():
-	# if request.method == 'POST':
-	# 	email = request.form.get('email')
-	# 	names = []
-	# 	percents = []
-	# 	count = []
-	# 	genders = []
-	# 	relationships = []
-	# 	urls = []
-	# 	avg_words = []
-	# 	num = 0
-	# 	for n in count_dict:
-	# 		names.append(n)
-	# 		count.append(num)
-	# 		you = count_dict.get(n)[0]
-	# 		them = count_dict.get(n)[1]
-	# 		percents.append((you/(you+them))*100)
-	# 		avg_words.append(words_per.get(n))# you then them
-	# 		if n in count_dict:
-	# 			try:
-	# 				genders.append(str(genders_dict[n]))
-	# 			except KeyError, e:
-	# 				#we know its none
-	# 				genders.append(None)
-	# 			try:
-	# 				relationships.append(relationships_dict[n])
-	# 			except KeyError, e:
-	# 				#we know its none
-	# 				relationships.append(None)
-	# 			try:
-	# 				urls.append(friend_url[n])
-	# 			except KeyError, e:
-	# 				#we know its none
-	# 				urls.append(None)
-	# 		num+=1
-	# 	expanded = ""
-	# 	for x in count:
-	# 		print "GOT THERE"
-	# 		print names[x]
-			#expanded += "<h2>Name: <a href="+urls[x]+">"+names[x]+"</a> (Gender: "+genders[x]+"Relationship Status:"+relationships[x]+"</h2><h4>You send "+avg_words[x][0]+" words per message</h4><h4> "+ names[x]+" sends "+avg_words[x][1]+"words per message</h4> <h4>You send "+ percents[x]+" of the chat messages</h4><br>"
-			
-		#print expanded
-		# message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
-		#  str(expanded))
-		# message.add_to(email,"with love")
-		# s.web.send(message)
 	names = []
 	percents = []
 	count = []
@@ -238,7 +193,7 @@ def stats():
 	for x in count:
 		try: 
 			str_format+= "<p>"+str(names[x])+", gender: "+ str(genders[x])+',relationship status:'+ str(relationships[x])+" You send " +str(percents[x])+"% of the chat messages" +"</p>"
-		except UniCodeEncodeError, e:
+		except Exception, e:
 			continue
 	str_format+="</body></html>"
 	return render_template('stats.html', count=count, names=names, percents=percents, relationships=relationships, genders=genders, urls=urls, avg_words=avg_words, str_format=str_format)
