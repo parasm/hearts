@@ -21,7 +21,7 @@
 		        <ul class="nav navbar-nav">
 		        </ul>
 		        <ul class="nav navbar-nav navbar-right">
-		        	<li><a href="/logout">Logout</a></li>
+		        	<li><a href="/logout" onclick="FB.logout();">Logout</a> </li>
 		        </ul>
 		      </div>
 		    </div>
@@ -66,7 +66,6 @@
 		      FB.login();
 		    }
 		  });
-		  {% block logout %}{% endblock %}
 		  // Load the SDK asynchronously
 		  (function(d){
 		   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

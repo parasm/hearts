@@ -158,6 +158,7 @@ def find():
 def stats():
 	if request.method == 'POST':
 		to_email = request.form.get('email')
+		print request.form
 		message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
 			"<h1>name</h1>")
 	names = []
