@@ -5,7 +5,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   // });
 	//chrome.tabs.executeScript(null, {file: "read.js"});
 	chrome.tabs.create({
-		'url': 'https://gimmehearts.herokuapp.com'
+		'url': 'http://gimmehearts.com'
 	}, function(tab){
 
 	});
