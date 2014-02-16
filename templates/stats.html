@@ -4,6 +4,7 @@
 	<h1>Your conversations:</h1>
 	<div class="container">
 		{% for x in count %}
+		{% if names[x] %}
 		<h2>Name: <a href="{{urls[x]}}">{{names[x]}}</a> <span class="smaller">(Gender: {{genders[x]}}{% if relationships[x] %}, 
 		Relationship Status: {{relationships[x]}}{% endif %})</span></h2>
 		<h4>You send {{avg_words[x][0]}} words per message</h4>
@@ -12,6 +13,7 @@
 		<div class="progress progress-striped">
             <div class="progress-bar progress-bar-warning" style="width: {{percents[x]}}%;"></div>
         </div>
+        {% endif %}
 		{% endfor %}
 		<br>
 		<div style="text-align:center;">

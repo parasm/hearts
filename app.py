@@ -27,11 +27,18 @@ friend_url = {}
 words_per = {}
 
 def reset():
+	print "got here reset 1"
+	global counter
 	counter = []
+	global count_dict
 	count_dict = {}
+	global relationships_dict
 	relationships_dict = {}
+	global genders_dict
 	genders_dict = {}
+	global friend_url
 	friend_url = {}
+	global last_user
 	last_user=""
 
 @app.route('/')
@@ -58,6 +65,8 @@ def love():
 	friends = friends.get('data')
 	#messaged_friends_names = []
 	for w in data:
+		if not(w.get('comments')):
+			continue
 		messages = w.get('comments').get('data')
 		name1 = [None,0]
 		name2 = [None,0]
@@ -65,7 +74,11 @@ def love():
 		average_2 = 0
 		num_messages = 0
 		for x in messages:
+			if not(x.get('from')):
+				continue
 			name = x.get('from').get('name')
+			if not(x.get('message')):
+				continue
 			message = x.get('message').split(' ')
 			num_messages+=1
 			#print str(message) + "avg: " +str(average)
@@ -94,7 +107,10 @@ def love():
 			count_dict[name1[0]]= [name2[1],name1[1]]
 			words_per[name1[0]] = [average_2/num_messages,average_1/num_messages]
 		#print name2[0] + " count: " + str(name2[1])
-		counter.append(str(name2[0]) + " count: " + str(name2[1]))
+		try:
+			counter.append(str(name2[0]) + " count: " + str(name2[1]))
+		except UnicodeEncodeError, e:
+			pass
 		if name2[0] == me:
 			count_dict[name1[0]] = [name2[1],name1[1]]
 			words_per[name1[0]] = [average_2/num_messages,average_1/num_messages]
@@ -102,7 +118,6 @@ def love():
 			count_dict[name2[0]] = [name1[1],name2[1]]
 			words_per[name2[0]] = [average_1/num_messages,average_2/num_messages]
 	#dict stores value of person chatting with, and maps to [your number,their number]
-	print words_per
 	for f in count_dict:#messaged_friends_names:
 		for friend in friends:
 			if friend.get("name") == f:
@@ -125,7 +140,8 @@ def love():
 	#resp = make_response(render_template('hearts.html', counter=counter, id=id))
 	#resp.set_cookie('id_code', str(id))
 	#return resp
-	return render_template('hearts.html', counter=counter)
+	#return render_template('hearts.html', counter=counter)
+	return redirect('/stats')
 @app.route('/find', methods=['GET','POST'])
 def find():
 	if request.method == 'POST':
@@ -160,11 +176,29 @@ def stats():
 		percents.append((you/(you+them))*100)
 		avg_words.append(words_per.get(n))# you then them
 		if n in count_dict:
-			genders.append(genders_dict[n])
-			relationships.append(relationships_dict[n])
-			urls.append(friend_url[n])
+			try:
+				genders.append(str(genders_dict[n]))
+			except KeyError, e:
+				#we know its none
+				genders.append(None)
+			try:
+				relationships.append(relationships_dict[n])
+			except KeyError, e:
+				#we know its none
+				relationships.append(None)
+			try:
+				urls.append(friend_url[n])
+			except KeyError, e:
+				#we know its none
+				urls.append(None)
 		num+=1
+	reset()
 	return render_template('stats.html', count=count, names=names, percents=percents, relationships=relationships, genders=genders, urls=urls, avg_words=avg_words)
+@app.route('/logout')
+def logout():
+	return render_template('logout.html')
+
+
 @app.errorhandler(404)
 def broken(error):
 	reset()
