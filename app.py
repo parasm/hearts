@@ -4,6 +4,7 @@ import ast
 import re
 import facebook
 import json
+import sendgrid
 import requests
 from bson.objectid import ObjectId
 from pymongo import MongoClient
@@ -13,9 +14,10 @@ import jinja2
 app = Flask(__name__)
 app.secret_key = 'paras_is_the_slim_reaper'
 
-client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
-db = client.get_default_database()
-chats = db.chats
+#client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
+#db = client.get_default_database()
+#chats = db.chats
+s = sendgrid.Sendgrid('parasm', 'bcabooks', secure=True)
 last_user =""
 counter = []
 count_dict = {}
@@ -131,8 +133,12 @@ def find():
 		chat = json.dumps(chat.get('chats'))
 		return chat
 	return render_template('find.html')
-@app.route('/stats')
+@app.route('/stats', methods=['GET','POST'])
 def stats():
+	if request.method == 'POST':
+		to_email = request.form.get('email')
+		message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
+			"<h1>name</h1>")
 	names = []
 	percents = []
 	count = []
