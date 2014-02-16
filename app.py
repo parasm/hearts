@@ -4,7 +4,7 @@ import ast
 import re
 import facebook
 import json
-import sendgrid
+#import sendgrid
 import requests
 from bson.objectid import ObjectId
 from pymongo import MongoClient
@@ -17,7 +17,7 @@ app.secret_key = 'paras_is_the_slim_reaper'
 #client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
 #db = client.get_default_database()
 #chats = db.chats
-s = sendgrid.Sendgrid('parasm', 'bcabooks', secure=True)
+#s = sendgrid.Sendgrid('parasm', 'bcabooks', secure=True)
 last_user =""
 counter = []
 count_dict = {}
@@ -53,6 +53,8 @@ def love():
 	friends = friends.get('data')
 	#messaged_friends_names = []
 	for w in data:
+		if w.get("comments") is None:
+			print w
 		messages = w.get('comments').get('data')
 		name1 = [None,0]
 		name2 = [None,0]
@@ -135,10 +137,10 @@ def find():
 	return render_template('find.html')
 @app.route('/stats', methods=['GET','POST'])
 def stats():
-	if request.method == 'POST':
-		to_email = request.form.get('email')
-		message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
-			"<h1>name</h1>")
+	#if request.method == 'POST':
+	#	to_email = request.form.get('email')
+	#	message = sendgrid.Message("stats@gimmehearts.com", "Conversation stats","plaintext message body",
+	#		"<h1>name</h1>")
 	names = []
 	percents = []
 	count = []
