@@ -14,6 +14,7 @@ import jinja2
 app = Flask(__name__)
 app.secret_key = 'paras_is_the_slim_reaper'
 
+#who wants the D button, you pick gender etc. match %
 #client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
 #db = client.get_default_database()
 #chats = db.chats
