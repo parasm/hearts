@@ -74,8 +74,8 @@ def love():
 		average_1 = 0
 		average_2 = 0
 		num_messages = 0
-		num_messages_1 = 1
-		num_messages_2 = 1
+		num_messages_1 = 0
+		num_messages_2 = 0
 		for x in messages:
 			if not(x.get('from')):
 				continue
@@ -104,8 +104,6 @@ def love():
 				name2[1] +=1
 				average_2 += len(message)
 				num_messages_2 += 1
-		#print('swerve diff chat')
-		#print name1[0] + " count: " + str(name1[1])
 		counter.append(str(name1[0]) + " count: " + str(name1[1]))
 		if num_messages_1 = 0:
 			num_messages_1 = 1
