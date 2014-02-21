@@ -107,6 +107,10 @@ def love():
 		#print('swerve diff chat')
 		#print name1[0] + " count: " + str(name1[1])
 		counter.append(str(name1[0]) + " count: " + str(name1[1]))
+		if num_messages_1 = 0:
+			num_messages_1 = 1
+		if num_messages_2 = 0:
+			num_messages_2 = 1
 		if name1[0] == me:
 			count_dict[name2[0]] = [name1[1],name2[1]]
 			words_per[name2[0]] = [average_1/num_messages_1,average_2/num_messages_2]
