@@ -74,6 +74,8 @@ def love():
 		average_1 = 0
 		average_2 = 0
 		num_messages = 0
+		num_messages_1 = 0
+		num_messages_2 = 0
 		for x in messages:
 			if not(x.get('from')):
 				continue
@@ -88,25 +90,29 @@ def love():
 				name1[0] = name
 				name1[1] +=1
 				average_1 += len(message)
+				num_messages_1 += 1
 			elif name1[0] == name:
 				name1[1]+=1
 				average_1 += len(message)
+				num_messages_1 += 1
 			if not(name2[0]) and name1[0] != name:
 				name2[0] = name
 				name2[1]+=1
 				average_2 += len(message)
+				num_messages_2 += 1
 			elif name2[0] == name:
 				name2[1] +=1
 				average_2 += len(message)
+				num_messages_2 += 1
 		#print('swerve diff chat')
 		#print name1[0] + " count: " + str(name1[1])
 		counter.append(str(name1[0]) + " count: " + str(name1[1]))
 		if name1[0] == me:
 			count_dict[name2[0]] = [name1[1],name2[1]]
-			words_per[name2[0]] = [average_1/num_messages,average_2/num_messages]
+			words_per[name2[0]] = [average_1/num_messages_1,average_2/num_messages_2]
 		else:
 			count_dict[name1[0]]= [name2[1],name1[1]]
-			words_per[name1[0]] = [average_2/num_messages,average_1/num_messages]
+			words_per[name1[0]] = [average_2/num_messages_2,average_1/num_messages_1]
 		#print name2[0] + " count: " + str(name2[1])
 		try:
 			counter.append(str(name2[0]) + " count: " + str(name2[1]))
@@ -114,10 +120,10 @@ def love():
 			pass
 		if name2[0] == me:
 			count_dict[name1[0]] = [name2[1],name1[1]]
-			words_per[name1[0]] = [average_2/num_messages,average_1/num_messages]
+			words_per[name1[0]] = [average_2/num_messages_2,average_1/num_messages_1]
 		else:
 			count_dict[name2[0]] = [name1[1],name2[1]]
-			words_per[name2[0]] = [average_1/num_messages,average_2/num_messages]
+			words_per[name2[0]] = [average_1/num_messages_1,average_2/num_messages_2]
 	#dict stores value of person chatting with, and maps to [your number,their number]
 	for f in count_dict:#messaged_friends_names:
 		for friend in friends:
