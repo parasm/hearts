@@ -19,13 +19,13 @@ app.secret_key = 'paras_is_the_slim_reaper'
 #db = client.get_default_database()
 #chats = db.chats
 s = sendgrid.Sendgrid('parasm', 'bcabooks', secure=True)
-last_user =""
 counter = []
 count_dict = {}
 relationships_dict = {}
 genders_dict = {}
 friend_url = {}
 words_per = {}
+email_str = "<h1>Your conversation stats:</h1>"
 
 def reset():
 	global counter
@@ -38,9 +38,10 @@ def reset():
 	genders_dict = {}
 	global friend_url
 	friend_url = {}
-	global last_user
-	last_user=""
 
+def reset_email():
+	global email_str
+	email_str = "<h1>Your conversation stats:</h1>"
 @app.route('/')
 def hello():
 	return render_template('index.html')
@@ -142,18 +143,6 @@ def love():
 	#return resp
 	#return render_template('hearts.html', counter=counter)
 	return redirect('/stats')
-@app.route('/find', methods=['GET','POST'])
-def find():
-	if request.method == 'POST':
-		id_code = request.form.get('id')
-		try:
-			chat = chats.find({'_id':ObjectId(id_code)}).limit(1)[0]
-		except Exception, e:
-			print e
-			return render_template('find.html', chat="could not find id")
-		chat = json.dumps(chat.get('chats'))
-		return chat
-	return render_template('find.html')
 @app.route('/stats', methods=['GET','POST'])
 def stats():
 	names = []
@@ -189,14 +178,45 @@ def stats():
 				urls.append(None)
 		num+=1
 	reset()
-	str_format ="<html><head></head><body>"
 	for x in count:
-		try: 
-			str_format+= "<p>"+str(names[x])+", gender: "+ str(genders[x])+',relationship status:'+ str(relationships[x])+" You send " +str(percents[x])+"% of the chat messages" +"</p>"
-		except Exception, e:
+		if abs(50-percents[x]) <= 10: 
+			try: 
+				global email_str
+				email_str += "<h2>Name:"+str(names[x])+"</h2>"
+				if genders[x] != None:
+					email_str += "<h3>  Gender: "+str(genders[x]) + "</h3>"
+				if relationships[x] != None:
+					email_str += "<h3>  Relationship Status: "+str(relationships[x]) + "</h3>"
+				email_str += "<p>You send them " + str(avg_words[x][0])+" words per mesage.</p>"
+				email_str += "<p>They send " + str(avg_words[x][1])+" words per message.</p>"
+				email_str += "<p>You send "+str(percents[x])+"% of the chat messages."
+			except Exception, e:
+				continue
+		else:
 			continue
-	str_format+="</body></html>"
-	return render_template('stats.html', count=count, names=names, percents=percents, relationships=relationships, genders=genders, urls=urls, avg_words=avg_words, str_format=str_format)
+	return render_template('stats.html', count=count, names=names, percents=percents, relationships=relationships, genders=genders, urls=urls, avg_words=avg_words)
+@app.route('/send', methods=['GET','POST'])
+def send():
+	if request.method == 'POST':
+		email = request.form.get('email')
+		message = sendgrid.Message("stats@gimmehearts.com", "Verify Email", "plaintext message body",
+    			str(email_str))
+		message.add_to(email,"User")
+		s.web.send(message)
+		reset_email()
+	return redirect('/')
+@app.route('/find', methods=['GET','POST'])
+def find():
+	if request.method == 'POST':
+		id_code = request.form.get('id')
+		try:
+			chat = chats.find({'_id':ObjectId(id_code)}).limit(1)[0]
+		except Exception, e:
+			print e
+			return render_template('find.html', chat="could not find id")
+		chat = json.dumps(chat.get('chats'))
+		return chat
+	return render_template('find.html')
 @app.route('/logout')
 def logout():
 	return render_template('logout.html')
