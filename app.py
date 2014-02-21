@@ -74,8 +74,8 @@ def love():
 		average_1 = 0
 		average_2 = 0
 		num_messages = 0
-		num_messages_1 = 0
-		num_messages_2 = 0
+		num_messages_1 = 1
+		num_messages_2 = 1
 		for x in messages:
 			if not(x.get('from')):
 				continue
