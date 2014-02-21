@@ -178,6 +178,7 @@ def stats():
 				urls.append(None)
 		num+=1
 	reset()
+	reset_email()
 	for x in count:
 		if abs(50-percents[x]) <= 10: 
 			try: 
@@ -199,7 +200,7 @@ def stats():
 def send():
 	if request.method == 'POST':
 		email = request.form.get('email')
-		message = sendgrid.Message("stats@gimmehearts.com", "Verify Email", "plaintext message body",
+		message = sendgrid.Message("stats@gimmehearts.com", "Conversation Stats", "plaintext message body",
     			str(email_str))
 		message.add_to(email,"User")
 		s.web.send(message)
