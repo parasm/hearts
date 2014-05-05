@@ -14,28 +14,9 @@ import jinja2
 app = Flask(__name__)
 app.secret_key = 'paras_is_the_slim_reaper'
 
-#who wants the D button, you pick gender etc. match %
-#client = MongoClient("mongodb://parasm:slimreaper@troup.mongohq.com:10092/pretzels")
-#db = client.get_default_database()
-#chats = db.chats
 s = sendgrid.Sendgrid('parasm', 'bcabooks', secure=True)
-#counter = []
-count_dict = {}
-relationships_dict = {}
-genders_dict = {}
-friend_url = {}
-words_per = {}
-email_str = "<h1>Your conversation stats:</h1>"
 
-def reset():
-	global count_dict
-	count_dict = {}
-	global relationships_dict
-	relationships_dict = {}
-	global genders_dict
-	genders_dict = {}
-	global friend_url
-	friend_url = {}
+email_str = "<h1>Your conversation stats:</h1>"
 
 def reset_email():
 	global email_str
@@ -43,13 +24,25 @@ def reset_email():
 @app.route('/')
 def hello():
 	return render_template('index.html')
-@app.route('/hearts')
-def love():
+@app.route('/stats', methods=['GET','POST'])
+def stats():
 	user = facebook.get_user_from_cookie(request.cookies,'1441116782789661','608a6502fb85bbbe7e0cafabcaa8832e')
 	try:
 		token = user.get('access_token')
 	except AttributeError, e:
 		return redirect('/')
+	count_dict = {}
+	relationships_dict = {}
+	genders_dict = {}
+	friend_url = {}
+	words_per = {}
+	names = []
+	percents = []
+	count = []
+	genders = []
+	relationships = []
+	urls = []
+	avg_words = []
 	graph = facebook.GraphAPI(token)
 	profile = graph.get_object("me")
 	me = profile.get('first_name') +" "+ profile.get('last_name')
@@ -110,7 +103,6 @@ def love():
 		else:
 			count_dict[name2[0]] = [name1[1],name2[1]]
 			words_per[name2[0]] = [average_1/num_messages_1,average_2/num_messages_2]
-	#dict stores value of person chatting with, and maps to [your number,their number]
 	for f in count_dict:
 		for friend in friends:
 			if friend.get("name") == f:
@@ -121,17 +113,6 @@ def love():
 				genders_dict[f] = r.get("gender")
 				friend_url[f] = "http://facebook.com/"+str(r.get('username'))
 				relationships_dict[f] = r.get('relationship_status')
-
-	return redirect('/stats')
-@app.route('/stats', methods=['GET','POST'])
-def stats():
-	names = []
-	percents = []
-	count = []
-	genders = []
-	relationships = []
-	urls = []
-	avg_words = []
 	num = 0
 	for n in count_dict:
 		names.append(n)
@@ -158,7 +139,6 @@ def stats():
 				#we know its none
 				urls.append(None)
 		num+=1
-	reset()
 	reset_email()
 	for x in count:
 		if abs(50-percents[x]) <= 10: 
@@ -187,22 +167,9 @@ def send():
 		s.web.send(message)
 		reset_email()
 	return redirect('/')
-@app.route('/find', methods=['GET','POST'])
-def find():
-	if request.method == 'POST':
-		id_code = request.form.get('id')
-		try:
-			chat = chats.find({'_id':ObjectId(id_code)}).limit(1)[0]
-		except Exception, e:
-			print e
-			return render_template('find.html', chat="could not find id")
-		chat = json.dumps(chat.get('chats'))
-		return chat
-	return render_template('find.html')
 @app.route('/logout')
 def logout():
 	return render_template('logout.html')
-
 
 @app.errorhandler(404)
 def broken(error):
