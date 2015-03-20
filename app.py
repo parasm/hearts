@@ -14,7 +14,7 @@ import jinja2
 app = Flask(__name__)
 app.secret_key = 'paras_is_the_slim_reaper'
 
-s = sendgrid.Sendgrid('parasm', 'bcabooks', secure=True)
+s = sendgrid.Sendgrid('username', 'password', secure=True)
 
 email_str = "<h1>Your conversation stats:</h1>"
 
